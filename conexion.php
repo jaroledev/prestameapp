@@ -1,19 +1,15 @@
 <?php
     function conectar()
     {
-        $host="locahost";
+        $host="localhost";
         $user="jrosado";
         $pass="Role9094?";
 
         $bd="prestameapp";
 
-        $conn=new mysqli($host, $user,$pass,$bd );
-        if ($conn->connect_error)
-        {
-            die('Error de conexión(' . $conn->connect_errno . ') ' . $conn->connect_error);
-        }
-        echo 'Éxito... ' . $conn->host_info . "\n";
-
-        $conn->close();    
+        $con=mysqli_connect($host, $user,$pass);
+        mysqli_select_db($con,$bd);
+        
+        return $con;
     }        
 ?>
