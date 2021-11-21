@@ -38,6 +38,7 @@
             <table class="table">
                 <thead class="thead-dark" >
                     <tr>
+                    <th scope="col"><input id="checkTodos" onchange="marcarTodos(this)" type="checkbox"></th>    
                     <th scope="col">User id</th>
                     <th scope="col">Nombre de Usuario</th>
                     <th scope="col">Teléfono</th>
@@ -48,7 +49,8 @@
                 <tbody>
                     <?php while ($row = mysqli_fetch_assoc($query)) { ?>
                     
-                    <tr>    
+                    <tr id="lineaTr" onclick="marcar(this)"> 
+                        <td><input class="cheaks" type="checkbox"></td>   
                         <td><?php echo $row['iduser']?></td>
                         <td><?php echo $row['username']?></td>
                         <td><?php echo $row['telefono']?></td>
@@ -65,8 +67,21 @@
 
     </div>
             <script>
+                function marcarTodos(chk){
+                    $('.cheaks').each(function() {
+                        
+                        this.checked = chk.checked;                        
+                    });
+                }
+                function marcar(linea){
+                    var valor = linea.children[0].firstChild.checked
+                    if (valor){
+                        linea.children[0].firstChild.checked = false
+                    }else{
+                        linea.children[0].firstChild.checked = true
+                    }
+                }
                 
-
             </script>            
 </body>
 </html>
